@@ -9,22 +9,18 @@ app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
-  // content-type is set to 'text/html'
-  // res.send('Hello Express!');
-
-  // content-type is set to 'application/json'
-  res.send({
-    name: 'My name',
-    likes: [
-      'Surfing',
-      'the',
-      'interwebs'
-    ]
+  res.render('home.hbs', {
+    pageTitle: 'Home',
+    currentYear: new Date().getFullYear(),
+    welcomeMessage: 'Welcome to my basic webpage!'
   });
 });
 
 app.get('/about', (req, res) => {
-  res.render('about.hbs');
+  res.render('about.hbs', {
+    pageTitle: 'About Page',
+    currentYear: new Date().getFullYear()
+  });
 })
 
 app.listen(3000, () => {
